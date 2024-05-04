@@ -1,15 +1,15 @@
 import { StyleSheet, View } from "react-native";
 import { ImageBackground, TouchableOpacity } from "react-native";
 import { Audio } from "expo-av";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-export default function App() {
-  const [sound, setSound] = useState();
+import cat from "./cat.jpg";
+import laugh from "./assets/laugh.mp3";
 
+export default function App() {
   async function playSound() {
     console.log("Loading Sound");
-    const { sound } = await Audio.Sound.createAsync(require("./laugh.mp3"));
-    setSound(sound);
+    const { sound } = await Audio.Sound.createAsync(laugh);
 
     console.log("Playing Sound");
     await sound.playAsync();
@@ -27,7 +27,7 @@ export default function App() {
           width: "100%",
           height: "100%",
         }}
-        source={require("./cat.jpg")}
+        source={cat}
         resizeMode="cover"
       >
         <TouchableOpacity
